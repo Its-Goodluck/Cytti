@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About Cytti Homes - Learn about our mission and values" />
+  <title>About Us - Cytti Homes</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      color: #333;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    /* Header */
+    header {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #667eea;
+      text-decoration: none;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      margin-left: 30px;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #667eea;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+      padding: 80px 0;
+      color: white;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      animation: slideDown 0.8s ease;
+    }
+
+    .hero p {
+      font-size: 18px;
+      opacity: 0.95;
+      max-width: 600px;
+      margin: 0 auto;
+      animation: slideUp 0.8s ease 0.2s both;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Section */
+    .section {
+      background: white;
+      border-radius: 16px;
+      padding: 50px 40px;
+      margin-bottom: 40px;
+      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section h2 {
+      font-size: 36px;
+      color: #222;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 3px solid #667eea;
+      display: inline-block;
+    }
+
+    .section p {
+      color: #666;
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    /* Values Grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .value-card {
+      text-align: center;
+      padding: 30px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .value-card:hover {
+      transform: translateY(-8px);
+      border-color: #667eea;
+      box-shadow: 0px 10px 30px rgba(102, 126, 234, 0.15);
+    }
+
+    .value-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .value-card h3 {
+      font-size: 20px;
+      color: #222;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .value-card p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    /* Team Section */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .team-member {
+      background: #f9f9f9;
+      border-radius: 12px;
+      overflow: hidden;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .team-member:hover {
+      transform: translateY(-8px);
+      box-shadow: 0px 10px 30px rgba(102, 126, 234, 0.2);
+    }
+
+    .team-member-image {
+      width: 100%;
+      height: 250px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      color: white;
+    }
+
+    .team-member-info {
+      padding: 20px;
+    }
+
+    .team-member h3 {
+      font-size: 18px;
+      color: #222;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .team-member .role {
+      color: #667eea;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .team-member p {
+      color: #666;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Stats Section */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .stat-box {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding: 40px 0;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background: #667eea;
+    }
+
+    .timeline-item {
+      margin-bottom: 40px;
+      width: 48%;
+    }
+
+    .timeline-item:nth-child(odd) {
+      margin-left: 0;
+      text-align: right;
+      padding-right: 30px;
+    }
+
+    .timeline-item:nth-child(even) {
+      margin-left: 52%;
+      text-align: left;
+      padding-left: 30px;
+    }
+
+    .timeline-content {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content {
+      border-left: none;
+      border-right: 4px solid #667eea;
+    }
+
+    .timeline-year {
+      font-size: 18px;
+      font-weight: 700;
+      color: #667eea;
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-size: 16px;
+      color: #222;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .timeline-description {
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 60px 40px;
+      border-radius: 16px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .cta-section h2 {
+      color: white;
+      border: none;
+      display: block;
+      margin-bottom: 16px;
+      font-size: 32px;
+    }
+
+    .cta-section p {
+      color: white;
+      margin-bottom: 24px;
+      opacity: 0.95;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: white;
+      color: #667eea;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px 0;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+      color: #999;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .section {
+        padding: 30px 20px;
+      }
+
+      .section h2 {
+        font-size: 24px;
+      }
+
+      .timeline::before {
+        left: 0;
+      }
+
+      .timeline-item {
+        width: 100%;
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        text-align: left !important;
+      }
+
+      .timeline-content {
+        border-left: 4px solid #667eea !important;
+        border-right: none !important;
+        margin-left: 20px;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 40px 0;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .section {
+        padding: 20px;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="index.html" class="logo">🏠 Cytti Homes</a>
+          <nav>
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>About Cytti Homes</h1>
+        <p>Connecting travelers with incredible properties and amazing hosts since 2023</p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+      <!-- Mission Section -->
+      <section class="section">
+        <h2>Our Mission</h2>
+        <p>
+          At Cytti Homes, we believe that everyone deserves access to amazing accommodations at affordable prices.
+          Our mission is to revolutionize the way people find and book properties by creating a transparent,
+          trustworthy, and user-friendly platform that connects guests with hosts across East Africa.
+        </p>
+        <p>
+          We're committed to making property rental simple, secure, and enjoyable for both guests and hosts, 
+          while maintaining the highest standards of professionalism and customer service.
+        </p>
+      </section>
+
+      <!-- Values Section -->
+      <section class="section">
+        <h2>Our Core Values</h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">🤝</div>
+            <h3>Trust</h3>
+            <p>We build trust through transparency, honesty, and accountability in every interaction.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">✨</div>
+            <h3>Quality</h3>
+            <p>We maintain the highest standards in our platform, properties, and customer service.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🌍</div>
+            <h3>Community</h3>
+            <p>We foster a vibrant community where guests and hosts connect, share experiences, and grow together.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">💡</div>
+            <h3>Innovation</h3>
+            <p>We continuously innovate to improve our platform and provide cutting-edge solutions.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">⚡</div>
+            <h3>Accessibility</h3>
+            <p>We believe quality accommodations should be accessible to everyone, regardless of budget.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🛡️</div>
+            <h3>Security</h3>
+            <p>We prioritize your safety and security with robust protection measures and verification processes.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="section">
+        <h2>By The Numbers</h2>
+        <div class="stats-container">
+          <div class="stat-box">
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">Active Properties</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">150K+</div>
+            <div class="stat-label">Happy Guests</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">12K+</div>
+            <div class="stat-label">Verified Hosts</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">4.8★</div>
+            <div class="stat-label">Average Rating</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Timeline Section -->
+      <section class="section">
+        <h2>Our Journey</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-year">2023</div>
+              <div class="timeline-title">PropertyHub Founded</div>
+              <div class="timeline-description">Started with a vision to revolutionize property rentals in East Africa.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-year">2023 Q3</div>
+              <div class="timeline-title">10,000+ Properties Launch</div>
+              <div class="timeline-description">Reached 10,000 active listings on our platform.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-year">2024</div>
+              <div class="timeline-title">Regional Expansion</div>
+              <div class="timeline-description">Expanded operations to Kenya, Uganda, Tanzania, and Rwanda.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-year">2024 Q2</div>
+              <div class="timeline-title">100,000 Guests Milestone</div>
+              <div class="timeline-description">Celebrated serving 100,000 guests with 4.8★ average rating.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-year">2025</div>
+              <div class="timeline-title">Mobile App Launch</div>
+              <div class="timeline-description">Launched iOS and Android apps for better accessibility.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-year">2026</div>
+              <div class="timeline-title">50K+ Properties</div>
+              <div class="timeline-description">Reached milestone of 50,000+ active properties on platform.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Team Section -->
+      <section class="section">
+        <h2>Meet Our Team</h2>
+        <div class="team-grid">
+          <div class="team-member">
+            <div class="team-member-image">👨‍💼</div>
+            <div class="team-member-info">
+              <h3>James Kipchoge</h3>
+              <div class="role">CEO & Founder</div>
+              <p>Tech visionary with 15+ years of experience in hospitality tech.</p>
+            </div>
+          </div>
+          <div class="team-member">
+            <div class="team-member-image">👩‍💼</div>
+            <div class="team-member-info">
+              <h3>Maria Okonkwo</h3>
+              <div class="role">COO</div>
+              <p>Operations expert ensuring seamless platform performance.</p>
+            </div>
+          </div>
+          <div class="team-member">
+            <div class="team-member-image">👨‍💻</div>
+            <div class="team-member-info">
+              <h3>David Mutua</h3>
+              <div class="role">CTO</div>
+              <p>Full-stack developer leading our technical innovation.</p>
+            </div>
+          </div>
+          <div class="team-member">
+            <div class="team-member-image">👩‍💻</div>
+            <div class="team-member-info">
+              <h3>Sarah Wanjiru</h3>
+              <div class="role">Head of Customer Success</div>
+              <p>Dedicated to ensuring excellent guest and host experiences.</p>
+            </div>
+          </div>
+          <div class="team-member">
+            <div class="team-member-image">👨‍🎨</div>
+            <div class="team-member-info">
+              <h3>Michael Kiplagat</h3>
+              <div class="role">Design Lead</div>
+              <p>Creating beautiful, intuitive user experiences for all.</p>
+            </div>
+          </div>
+          <div class="team-member">
+            <div class="team-member-image">👩‍🔬</div>
+            <div class="team-member-info">
+              <h3>Dr. Amina Hassan</h3>
+              <div class="role">Head of Safety</div>
+              <p>Ensuring community safety and trust on our platform.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta-section">
+        <h2>Ready to Experience PropertyHub?</h2>
+        <p>Join thousands of travelers finding their perfect stay</p>
+        <a href="properties.html" class="btn">Browse Properties</a>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2026 PropertyHub. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

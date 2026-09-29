@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact Cytti Homes - Get in touch with our team" />
+  <title>Contact Us - Cytti Homes</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      color: #333;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    /* Header */
+    header {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #667eea;
+      text-decoration: none;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      margin-left: 30px;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #667eea;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+      padding: 60px 0;
+      color: white;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: 44px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      opacity: 0.95;
+    }
+
+    /* Content Grid */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    /* Contact Info Cards */
+    .contact-info {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .contact-info h2 {
+      font-size: 28px;
+      color: #222;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+
+    .contact-item {
+      margin-bottom: 30px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .contact-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-icon {
+      font-size: 32px;
+      min-width: 40px;
+      text-align: center;
+    }
+
+    .contact-details h3 {
+      font-size: 16px;
+      color: #222;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .contact-details p {
+      color: #666;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .contact-details a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-details a:hover {
+      text-decoration: underline;
+    }
+
+    /* Business Hours */
+    .business-hours {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .business-hours h4 {
+      color: #222;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .hour-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #e0e0e0;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .hour-item:last-child {
+      border-bottom: none;
+    }
+
+    .day {
+      font-weight: 600;
+    }
+
+    .time {
+      color: #667eea;
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .contact-form h2 {
+      font-size: 28px;
+      color: #222;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0px 0px 0px 4px rgba(102, 126, 234, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    /* Error Message */
+    .error-message {
+      background: #fee;
+      color: #c33;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      border-left: 4px solid #c33;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    /* Success Message */
+    .success-message {
+      background: #efe;
+      color: #3c3;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      border-left: 4px solid #3c3;
+      display: none;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    /* Button */
+    .btn {
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0px 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* Loading Spinner */
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Social Links */
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: #f0f0f0;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: #667eea;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px 0;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+      color: #999;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-info,
+      .contact-form {
+        padding: 30px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 40px 0;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .contact-info,
+      .contact-form {
+        padding: 20px;
+      }
+
+      .contact-item {
+        flex-direction: column;
+      }
+
+      .contact-icon {
+        min-width: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="index.html" class="logo">CYTTI HOMES</a>
+          <nav>
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Get in Touch</h1>
+        <p>We'd love to hear from you. Reach out to our team anytime!</p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="content-grid">
+        <!-- Contact Information -->
+        <div class="contact-info">
+          <h2>Contact Information</h2>
+
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div class="contact-details">
+              <h3>Email</h3>
+              <p>
+                General Inquiries: <a href="wachirabrian625@gmail.com">wachirabrian625@gmail.com</a><br/>
+                Support: <a href="mumbibrian68@gmail.com">mumbibrian68@gmail.com</a><br/>
+                Business: <a href="mumbibrian68@gmail.com">mumbibrian68@gmail.com</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-details">
+              <h3>Phone</h3>
+              <p>
+                Customer Support: <a href="tel:+254745507168">+254745507168</a><br/>
+                Hours: Mon-Fri, 9AM-6PM EAT
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-details">
+              <h3>Office Address</h3>
+              <p>
+                Cytti Homes Headquarters<br/>
+                Nairobi, Kenya 00100<br/>
+                East Africa
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">💬</div>
+            <div class="contact-details">
+              <h3>Live Chat</h3>
+              <p>Available 24/7 at the bottom-right corner of any page</p>
+            </div>
+          </div>
+
+          <!-- Business Hours -->
+          <div class="business-hours">
+            <h4>Business Hours</h4>
+            <div class="hour-item">
+              <span class="day">Monday - Friday</span>
+              <span class="time">9:00 AM - 6:00 PM</span>
+            </div>
+            <div class="hour-item">
+              <span class="day">Saturday</span>
+              <span class="time">10:00 AM - 4:00 PM</span>
+            </div>
+            <div class="hour-item">
+              <span class="day">Sunday</span>
+              <span class="time">Closed</span>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <h3 style="margin-top: 30px; margin-bottom: 12px; color: #222; font-size: 16px; font-weight: 600;">Follow Us</h3>
+          <div class="social-links">
+            <a href="https://www.facebook.com/share/1cyyaimyqz/" class="social-link" title="Facebook">f</a>
+            <a href="https://x.com/Its__Goodluck" class="social-link" title="Twitter">𝕏</a>
+            <a href="c:\Users\ADMIN\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\LocalState\sessions\6938937E7D64E7632ED5F062399281FC0ECCB87F\transfers\2026-07\WhatsApp Image 2026-02-12 at 08.53.36.jpeg" class="social-link" title="Instagram">📷</a>
+            <a href="#" class="social-link" title="LinkedIn">in</a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+          <h2>Send us a Message</h2>
+
+          <div class="error-message" id="errorMessage"></div>
+          <div class="success-message" id="successMessage">Thank you! We'll get back to you soon.</div>
+
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" required placeholder="Your Name" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="your@email.com" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject *</label>
+              <select id="subject" name="subject" required>
+                <option value="">Select a subject</option>
+                <option value="general">General Inquiry</option>
+                <option value="booking">Booking Issue</option>
+                <option value="payment">Payment Problem</option>
+                <option value="property">Property Listing</option>
+                <option value="complaint">Complaint</option>
+                <option value="partnership">Partnership Opportunity</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number (Optional)</label>
+              <input type="tel" id="phone" name="phone" placeholder="+254 123 456 789" />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" required placeholder="Please describe your inquiry in detail..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label style="text-transform: none; letter-spacing: normal; font-weight: 400;">
+                <input type="checkbox" id="newsletter" name="newsletter" />
+                I'd like to subscribe to Cytti Homes updates
+              </label>
+            </div>
+
+            <button type="submit" class="btn" id="submitBtn">
+              Send Message
+            </button>
+          </form>
+
+          <p style="margin-top: 16px; font-size: 12px; color: #999; text-align: center;">
+            We'll respond to your message within 24 hours
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; @Goodluck1. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const errorMessage = document.getElementById('errorMessage');
+    const successMessage = document.getElementById('successMessage');
+
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      if (!validateForm()) {
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner"></span>Sending...';
+      errorMessage.classList.remove('show');
+      successMessage.classList.remove('show');
+
+      try {
+        const formData = new FormData(contactForm);
+
+        const response = await fetch('contact_process.php', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          successMessage.classList.add('show');
+          contactForm.reset();
+          setTimeout(() => {
+            successMessage.classList.remove('show');
+          }, 5000);
+        } else {
+          showError(data.message || 'Failed to send message. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showError('Network error. Please check your connection and try again.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Send Message';
+      }
+    });
+
+    function validateForm() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || name.length < 2) {
+        showError('Please enter a valid name');
+        return false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showError('Please enter a valid email address');
+        return false;
+      }
+
+      if (!subject) {
+        showError('Please select a subject');
+        return false;
+      }
+
+      if (!message || message.length < 10) {
+        showError('Please enter a message (at least 10 characters)');
+        return false;
+      }
+
+      return true;
+    }
+
+    function showError(message) {
+      errorMessage.textContent = message;
+      errorMessage.classList.add('show');
+    }
+
+    function hideError() {
+      errorMessage.classList.remove('show');
+    }
+  </script>
+</body>
+</html>

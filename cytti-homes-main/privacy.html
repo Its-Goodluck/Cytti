@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cytti Homes Privacy Policy - How we protect your data" />
+  <title>Privacy Policy - Cytti Homes</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      color: #333;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    /* Header */
+    header {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #667eea;
+      text-decoration: none;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      margin-left: 30px;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #667eea;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+      padding: 60px 0;
+      color: white;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: 44px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      opacity: 0.95;
+    }
+
+    /* Content Container */
+    .content-container {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    .content-container h2 {
+      font-size: 24px;
+      color: #222;
+      margin: 30px 0 16px 0;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #667eea;
+      display: inline-block;
+    }
+
+    .content-container h3 {
+      font-size: 18px;
+      color: #333;
+      margin: 20px 0 12px 0;
+      font-weight: 600;
+    }
+
+    .content-container p {
+      color: #666;
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+
+    .content-container ul,
+    .content-container ol {
+      margin: 16px 0 16px 20px;
+      color: #666;
+    }
+
+    .content-container li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .highlight-box {
+      background: rgba(102, 126, 234, 0.1);
+      border-left: 4px solid #667eea;
+      padding: 16px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .highlight-box strong {
+      color: #667eea;
+    }
+
+    .toc {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 30px 0;
+    }
+
+    .toc h3 {
+      margin-top: 0;
+    }
+
+    .toc ul {
+      list-style: none;
+      margin: 0;
+    }
+
+    .toc li {
+      margin: 8px 0;
+    }
+
+    .toc a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .toc a:hover {
+      text-decoration: underline;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Powered By Badge */
+    .powered-by {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+      border: 2px solid #667eea;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      margin: 40px 0;
+      color: #667eea;
+      font-weight: 600;
+    }
+
+    .powered-by a {
+      color: #667eea;
+      text-decoration: none;
+    }
+
+    .powered-by a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px 0 20px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-section h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .footer-section a {
+      display: block;
+      color: #666;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 8px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: #667eea;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #e0e0e0;
+      padding-top: 20px;
+      text-align: center;
+      color: #999;
+      font-size: 13px;
+    }
+
+    .powered-by-footer {
+      margin-top: 12px;
+      color: #999;
+      font-size: 12px;
+    }
+
+    .powered-by-footer a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .powered-by-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .content-container {
+        padding: 24px;
+      }
+
+      .content-container h2 {
+        font-size: 20px;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 40px 0;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .content-container {
+        padding: 16px;
+      }
+
+      .content-container h2 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="index.html" class="logo">🏠 Cytti Homes</a>
+          <nav>
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Privacy Policy</h1>
+        <p>How we protect and handle your personal information</p>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <div class="container">
+      <div class="content-container">
+        <p><strong>Last Updated: February 2026</strong></p>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+          <h3>Table of Contents</h3>
+          <ul>
+            <li><a href="#introduction">1. Introduction</a></li>
+            <li><a href="#information-we-collect">2. Information We Collect</a></li>
+            <li><a href="#how-we-use">3. How We Use Your Information</a></li>
+            <li><a href="#data-security">4. Data Security</a></li>
+            <li><a href="#your-rights">5. Your Rights</a></li>
+            <li><a href="#cookies">6. Cookies & Tracking</a></li>
+            <li><a href="#third-parties">7. Third-Party Services</a></li>
+            <li><a href="#contact">8. Contact Us</a></li>
+          </ul>
+        </div>
+
+        <h2 id="introduction">1. Introduction</h2>
+        <p>
+          Cytti Homes ("we," "us," "our," or "Company") is committed to protecting your privacy and ensuring
+          transparency about how we collect, use, disclose, and safeguard your information. This Privacy Policy
+          explains our practices and your rights regarding your personal data.
+        </p>
+
+        <p>
+          Please read this Privacy Policy carefully. By accessing or using Cytti Homes, you acknowledge that you
+          have read, understood, and agree to be bound by all the terms of this Privacy Policy.
+        </p>
+
+        <h2 id="information-we-collect">2. Information We Collect</h2>
+
+        <h3>2.1 Information You Provide Directly</h3>
+        <ul>
+          <li><strong>Account Information:</strong> Name, email address, phone number, password, profile picture, and date of birth</li>
+          <li><strong>Booking Information:</strong> Check-in/check-out dates, number of guests, special requests</li>
+          <li><strong>Payment Information:</strong> Card details, M-Pesa phone number, bank account information (processed securely)</li>
+          <li><strong>Communication:</strong> Messages between guests and hosts, support inquiries, feedback</li>
+          <li><strong>Property Listings:</strong> Property descriptions, images, amenities, pricing, and availability</li>
+        </ul>
+
+        <h3>2.2 Information Collected Automatically</h3>
+        <ul>
+          <li><strong>Device Information:</strong> Device type, operating system, browser type, IP address</li>
+          <li><strong>Usage Data:</strong> Pages visited, time spent on pages, search queries, clicks, interactions</li>
+          <li><strong>Location Data:</strong> General location (city/region level) based on IP address or GPS (if enabled)</li>
+          <li><strong>Cookies & Tracking:</strong> Cookies, pixels, and similar tracking technologies</li>
+        </ul>
+
+        <h3>2.3 Information from Third Parties</h3>
+        <ul>
+          <li>Payment processors and financial institutions</li>
+          <li>Identity verification services</li>
+          <li>Social media platforms (if you link your account)</li>
+          <li>Other users (reviews, ratings, feedback)</li>
+        </ul>
+
+        <div class="highlight-box">
+          <strong>Note:</strong> We only collect information necessary for providing our services, ensuring safety, 
+          and complying with legal obligations.
+        </div>
+
+        <h2 id="how-we-use">3. How We Use Your Information</h2>
+
+        <p>We use the information we collect for various purposes:</p>
+
+        <h3>3.1 Service Provision</h3>
+        <ul>
+          <li>Creating and managing your account</li>
+          <li>Processing bookings and payments</li>
+          <li>Delivering customer support</li>
+          <li>Facilitating communication between guests and hosts</li>
+          <li>Personalizing your experience on the platform</li>
+        </ul>
+
+        <h3>3.2 Security & Fraud Prevention</h3>
+        <ul>
+          <li>Verifying user identity and preventing fraud</li>
+          <li>Detecting and preventing unauthorized access</li>
+          <li>Investigating security incidents</li>
+          <li>Protecting against harmful, illegal, or unethical behavior</li>
+        </ul>
+
+        <h3>3.3 Marketing & Communications</h3>
+        <ul>
+          <li>Sending promotional emails and newsletters (you can opt-out anytime)</li>
+          <li>Notifying you about service updates and changes</li>
+          <li>Conducting surveys and gathering feedback</li>
+          <li>Personalizing marketing content based on your interests</li>
+        </ul>
+
+        <h3>3.4 Analytics & Improvement</h3>
+        <ul>
+          <li>Analyzing usage patterns to improve our platform</li>
+          <li>Conducting research and development</li>
+          <li>Creating aggregated, anonymized reports</li>
+          <li>Testing new features and functionality</li>
+        </ul>
+
+        <h3>3.5 Legal Compliance</h3>
+        <ul>
+          <li>Complying with applicable laws and regulations</li>
+          <li>Responding to legal requests from authorities</li>
+          <li>Protecting our legal rights and preventing misuse</li>
+        </ul>
+
+        <h2 id="data-security">4. Data Security</h2>
+
+        <h3>4.1 Security Measures</h3>
+        <p>
+          We implement comprehensive security measures to protect your personal information, including:
+        </p>
+        <ul>
+          <li>SSL/TLS encryption for data in transit</li>
+          <li>Encrypted storage for sensitive data</li>
+          <li>Regular security audits and penetration testing</li>
+          <li>Access controls and authentication protocols</li>
+          <li>Employee training on data protection and privacy</li>
+          <li>Incident response procedures</li>
+        </ul>
+
+        <h3>4.2 Data Retention</h3>
+        <p>
+          We retain your personal information only as long as necessary to provide services, comply with legal 
+          obligations, and resolve disputes. You can request deletion of your account and associated data at any time.
+        </p>
+
+        <div class="highlight-box">
+          <strong>Important:</strong> While we implement strong security measures, no system is 100% secure. 
+          We cannot guarantee absolute security of your information.
+        </div>
+
+        <h2 id="your-rights">5. Your Privacy Rights</h2>
+
+        <h3>5.1 Your Rights</h3>
+        <p>You have the following rights regarding your personal information:</p>
+
+        <ul>
+          <li><strong>Right to Access:</strong> Request a copy of your personal data</li>
+          <li><strong>Right to Correction:</strong> Correct inaccurate or incomplete information</li>
+          <li><strong>Right to Deletion:</strong> Request deletion of your data ("right to be forgotten")</li>
+          <li><strong>Right to Data Portability:</strong> Receive your data in a portable format</li>
+          <li><strong>Right to Opt-Out:</strong> Unsubscribe from marketing communications</li>
+          <li><strong>Right to Withdraw Consent:</strong> Withdraw consent for data processing</li>
+        </ul>
+
+        <h3>5.2 Exercising Your Rights</h3>
+        <p>
+          To exercise any of these rights, please contact us at <a href="mailto:privacy@propertyhub.local">privacy@propertyhub.local</a>. 
+          We will respond to your request within 30 days.
+        </p>
+
+        <h2 id="cookies">6. Cookies & Tracking Technologies</h2>
+
+        <h3>6.1 How We Use Cookies</h3>
+        <p>
+          Cytti Homes uses cookies and similar tracking technologies to enhance your experience. Cookies are
+          small files stored on your device that help us remember your preferences and improve our service.
+        </p>
+
+        <h3>6.2 Types of Cookies</h3>
+        <ul>
+          <li><strong>Essential Cookies:</strong> Required for site functionality and security</li>
+          <li><strong>Performance Cookies:</strong> Track site usage and performance metrics</li>
+          <li><strong>Preference Cookies:</strong> Remember your settings and preferences</li>
+          <li><strong>Marketing Cookies:</strong> Track your interactions for personalized advertising</li>
+        </ul>
+
+        <h3>6.3 Managing Cookies</h3>
+        <p>
+          You can control cookie settings in your browser. However, disabling certain cookies may affect 
+          site functionality. You can also opt-out of tracking through your browser's Do Not Track feature.
+        </p>
+
+        <h2 id="third-parties">7. Third-Party Services</h2>
+
+        <h3>7.1 Third-Party Processors</h3>
+        <p>
+          We share your information with trusted third parties to provide our services:
+        </p>
+        <ul>
+          <li><strong>Payment Processors:</strong> Stripe, Mpesa, Pesapal (PCI-DSS compliant)</li>
+          <li><strong>Email Service Providers:</strong> SendGrid, Mailchimp</li>
+          <li><strong>Analytics Tools:</strong> Google Analytics, Mixpanel</li>
+          <li><strong>Cloud Hosting:</strong> AWS, Google Cloud</li>
+          <li><strong>Identity Verification:</strong> Jumio, Onfido</li>
+        </ul>
+
+        <h3>7.2 Privacy Agreements</h3>
+        <p>
+          All third-party processors are bound by Data Processing Agreements ensuring they comply with 
+          applicable privacy laws and maintain appropriate security standards.
+        </p>
+
+        <h3>7.3 Your Control</h3>
+        <p>
+          We do not sell or rent your personal information to third parties for their marketing purposes. 
+          Any data sharing is strictly for service delivery and legal compliance.
+        </p>
+
+        <h2 id="contact">8. Contact Us</h2>
+
+        <p>
+          If you have questions, concerns, or requests regarding this Privacy Policy or our data practices, 
+          please contact our Privacy Team:
+        </p>
+
+        <div class="highlight-box">
+          <strong>PropertyHub Privacy Team</strong><br/>
+          Email: <a href="mailto:privacy@propertyhub.local">privacy@propertyhub.local</a><br/>
+          Phone: +254 (0) 123 456 789<br/>
+          Office: Nairobi, Kenya<br/>
+          Response Time: Within 30 days
+        </div>
+
+        <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
+          <strong>By using PropertyHub, you consent to this Privacy Policy. We reserve the right to update 
+          this policy at any time. Significant changes will be communicated to you via email.</strong>
+        </p>
+
+        <!-- Powered By Badge -->
+        <div class="powered-by">
+          🚀 Powered by <a href="https://goodlucklab.com" target="_blank" rel="noopener noreferrer">GoodluckLab</a>
+        </div>
+
+        <a href="index.html" class="btn">← Back to Home</a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>PropertyHub</h4>
+            <a href="index.html">Home</a>
+            <a href="properties.html">Browse Properties</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div class="footer-section">
+            <h4>Support</h4>
+            <a href="faq.html">FAQ</a>
+            <a href="help.html">Help Center</a>
+            <a href="contact.html">Contact Support</a>
+          </div>
+          <div class="footer-section">
+            <h4>Legal</h4>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="cancellation.html">Cancellation Policy</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 PropertyHub. All rights reserved.</p>
+          <div class="powered-by-footer">
+            Powered by <a href="https://goodlucklab.com" target="_blank" rel="noopener noreferrer">GoodluckLab</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

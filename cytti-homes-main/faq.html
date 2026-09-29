@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ - Cytti Homes</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      color: #333;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #667eea;
+      text-decoration: none;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      margin-left: 20px;
+    }
+
+    .content {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+      margin: 40px 0;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 20px;
+    }
+
+    .faq-question {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .faq-answer {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    footer {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px 0;
+      text-align: center;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="index.html" class="logo">🏠 Cytti Homes</a>
+          <nav>
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="content">
+        <h1>Frequently Asked Questions</h1>
+
+        <div class="faq-item">
+          <div class="faq-question">How do I search for properties?</div>
+          <div class="faq-answer">Use the search bar on the homepage or browse the properties page. You can filter by location, price, property type, and amenities.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">How do I book a property?</div>
+          <div class="faq-answer">Click on "Details" for the property you're interested in, then click "Book Now" to proceed with payment.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">What payment methods do you accept?</div>
+          <div class="faq-answer">We accept credit cards, debit cards, and mobile money payments.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Can I cancel my booking?</div>
+          <div class="faq-answer">Yes, you can cancel your booking up to 24 hours before check-in. Please refer to our cancellation policy for details.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">How do I contact customer support?</div>
+          <div class="faq-answer">You can contact us through the contact form on our website or email us at support@propertyhub.com.</div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2026 Cytti Homes. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

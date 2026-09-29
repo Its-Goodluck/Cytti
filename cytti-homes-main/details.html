@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View detailed information about available properties" />
+  <title>Property Details</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      color: #333;
+    }
+
+    /* Background pattern */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    /* Header */
+    header {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #667eea;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .logo:hover {
+      color: #764ba2;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: #667eea;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background: #667eea;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 12px 0;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .breadcrumb a,
+    .breadcrumb span {
+      color: #667eea;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    .breadcrumb span {
+      color: #999;
+      margin: 0 8px;
+    }
+
+    .breadcrumb-current {
+      color: #333;
+    }
+
+    /* Details Container */
+    .details-container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      animation: slideUp 0.6s ease;
+      margin-bottom: 40px;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Image Gallery */
+    .image-gallery {
+      position: relative;
+      width: 100%;
+      height: 450px;
+      background: #f0f0f0;
+      overflow: hidden;
+    }
+
+    .gallery-main {
+      width: 100%;
+      height: 100%;
+    }
+
+    .gallery-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 16px;
+      pointer-events: none;
+    }
+
+    .gallery-btn {
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      pointer-events: all;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .gallery-btn:hover {
+      background: white;
+      transform: scale(1.1);
+    }
+
+    .gallery-thumbnails {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.05);
+      overflow-x: auto;
+    }
+
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumbnail.active {
+      border-color: #667eea;
+    }
+
+    .thumbnail:hover {
+      transform: scale(1.05);
+    }
+
+    /* Details Content */
+    .details-content {
+      padding: 40px;
+    }
+
+    .details-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      margin-bottom: 30px;
+      align-items: start;
+    }
+
+    .property-title {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .property-title h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #222;
+      margin: 0;
+    }
+
+    .property-location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #666;
+      font-size: 16px;
+    }
+
+    .property-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffc107;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .property-price {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .price-amount {
+      font-size: 32px;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    .price-per {
+      color: #999;
+      font-size: 14px;
+    }
+
+    .favorite-btn {
+      background: #f0f0f0;
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .favorite-btn:hover {
+      background: #667eea;
+      color: white;
+      transform: scale(1.1);
+    }
+
+    /* Quick Info */
+    .quick-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .info-item {
+      text-align: center;
+      padding: 16px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .info-item:hover {
+      background: #f0f0f0;
+      transform: translateY(-2px);
+    }
+
+    .info-label {
+      color: #666;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .info-value {
+      color: #222;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    /* Description Section */
+    .description-section {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #667eea;
+      display: inline-block;
+    }
+
+    .property-description {
+      color: #666;
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    /* Amenities */
+    .amenities {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+    }
+
+    .amenity {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      color: #333;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .amenity-icon {
+      font-size: 20px;
+    }
+
+    /* Features Section */
+    .features-section {
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .feature {
+      padding: 16px;
+      background: #f9f9f9;
+      border-left: 4px solid #667eea;
+      border-radius: 8px;
+    }
+
+    .feature-title {
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 4px;
+    }
+
+    .feature-value {
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* Booking Section */
+    .booking-section {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 12px;
+      margin-top: 30px;
+    }
+
+    .booking-content {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .booking-info h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .booking-info p {
+      opacity: 0.95;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    /* Buttons */
+    .button-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 30px;
+      border-top: 1px solid #e0e0e0;
+      margin-top: 30px;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      flex: 1;
+      min-width: 180px;
+      justify-content: center;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0px 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      background: #f0f0f0;
+      color: #333;
+      min-width: 150px;
+      justify-content: center;
+    }
+
+    .btn-secondary:hover {
+      background: #e0e0e0;
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* Loading State */
+    .loading-state {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 400px;
+      gap: 16px;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(102, 126, 234, 0.2);
+      border-top-color: #667eea;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Error State */
+    .error-state {
+      text-align: center;
+      padding: 40px;
+      background: #fee;
+      border-radius: 12px;
+      color: #c33;
+    }
+
+    .error-state h2 {
+      margin-bottom: 8px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .details-header {
+        grid-template-columns: 1fr;
+      }
+
+      .property-price {
+        align-items: flex-start;
+      }
+
+      .details-content {
+        padding: 24px;
+      }
+
+      .image-gallery {
+        height: 300px;
+      }
+
+      .property-title h1 {
+        font-size: 28px;
+      }
+
+      .price-amount {
+        font-size: 24px;
+      }
+
+      .booking-content {
+        grid-template-columns: 1fr;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .details-content {
+        padding: 16px;
+      }
+
+      .image-gallery {
+        height: 250px;
+      }
+
+      .property-title h1 {
+        font-size: 22px;
+      }
+
+      .quick-info {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .amenities {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="index.html" class="logo">🏠 Cytti Homes</a>
+          <nav>
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="about.html">About</a>
+            <a href="login.html">Log In</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container" style="margin-top: 20px;">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="properties.html">Properties</a>
+        <span>/</span>
+        <span class="breadcrumb-current" id="breadcrumb-title">Property Details</span>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="details-container" id="detailsContainer">
+        <!-- Loading State -->
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <span>Loading property details...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: rgba(255, 255, 255, 0.95); padding: 30px 0; margin-top: 60px; border-top: 1px solid #e0e0e0;">
+      <div class="container" style="text-align: center; color: #999; font-size: 14px;">
+        <p>&copy; 2026 Cytti Homes. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Get property ID from URL
+    const params = new URLSearchParams(window.location.search);
+    const propertyId = params.get('id');
+
+    // State management
+    const state = {
+      property: null,
+      currentImageIndex: 0,
+      images: []
+    };
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+      if (!propertyId) {
+        showError('No property ID provided');
+        return;
+      }
+      fetchPropertyDetails();
+    });
+
+    // Sample properties data (same as in properties.html)
+    const sampleProperties = [
+      {
+        id: 1,
+        title: "Luxury Apartment in Nairobi CBD",
+        location: "Nairobi, Kenya",
+        price: "15000",
+        description: "Modern 2-bedroom apartment with stunning city views, fully furnished and equipped with all amenities. Perfect for business travelers or couples looking for a comfortable stay in the heart of the city.",
+        amenities: ["WiFi", "Pool", "Gym", "Parking"],
+        type: "apartment",
+        rating: 4.8,
+        image: "photo/H1.jpeg",
+        created_at: "2023-10-01",
+        bedrooms: 2,
+        bathrooms: 2,
+        size: "120 m²",
+        host: "Sarah Johnson",
+        reviews: 24,
+        images: ["photo/H1.jpeg", "photo/T1.png", "photo/B2.jpeg"]
+      },
+      {
+        id: 2,
+        title: "Cozy House in Karen",
+        location: "Karen, Nairobi",
+        price: "25000",
+        description: "Spacious 3-bedroom house with a beautiful garden, perfect for families or groups. Features modern amenities and a peaceful neighborhood setting.",
+        amenities: ["Garden", "Parking", "WiFi"],
+        type: "house",
+        rating: 4.5,
+        image: "photo/B2.jpeg",
+        created_at: "2023-09-15",
+        bedrooms: 3,
+        bathrooms: 2,
+        size: "200 m²",
+        host: "Michael Chen",
+        reviews: 18,
+        images: ["photo/B2.jpeg", "photo/H2.jpeg", "photo/T1.png"]
+      },
+      {
+        id: 3,
+        title: "Elegant Villa in Westlands",
+        location: "Westlands, Nairobi",
+        price: "35000",
+        description: "Luxurious 4-bedroom villa with private pool and modern interiors. Ideal for large groups or families seeking luxury accommodation.",
+        amenities: ["Pool", "Gym", "WiFi", "Parking"],
+        type: "villa",
+        rating: 4.9,
+        image: "photo/T1.png",
+        created_at: "2023-08-20",
+        bedrooms: 4,
+        bathrooms: 3,
+        size: "300 m²",
+        host: "Emma Rodriguez",
+        reviews: 32,
+        images: ["photo/T1.png", "photo/H1.jpeg", "photo/H2.jpeg", "photo/B2.jpeg"]
+      },
+      {
+        id: 4,
+        title: "Stylish Loft in Kilimani",
+        location: "Kilimani, Nairobi",
+        price: "12000",
+        description: "Contemporary loft space ideal for professionals, with rooftop access and modern design. Perfect for short-term stays.",
+        amenities: ["WiFi", "Gym"],
+        type: "loft",
+        rating: 4.2,
+        image: "photo/H2.jpeg",
+        created_at: "2023-07-10",
+        bedrooms: 1,
+        bathrooms: 1,
+        size: "80 m²",
+        host: "David Kim",
+        reviews: 12,
+        images: ["photo/H2.jpeg", "photo/B2.jpeg", "photo/H1.jpeg"]
+      },
+      {
+        id: 5,
+        title: "Penthouse Suite in Parklands",
+        location: "Parklands, Nairobi",
+        price: "40000",
+        description: "Exclusive penthouse with panoramic views and premium amenities. Experience luxury living at its finest.",
+        amenities: ["Pool", "Gym", "WiFi", "Parking"],
+        type: "penthouse",
+        rating: 5.0,
+        image: "photo/H1.jpeg",
+        created_at: "2023-06-05",
+        bedrooms: 3,
+        bathrooms: 3,
+        size: "250 m²",
+        host: "Lisa Thompson",
+        reviews: 45,
+        images: ["photo/H1.jpeg", "photo/T1.png", "photo/B2.jpeg", "photo/H2.jpeg"]
+      },
+      {
+        id: 6,
+        title: "Charming Cottage in Limuru",
+        location: "Limuru, Kenya",
+        price: "18000",
+        description: "Quaint cottage surrounded by nature, perfect for a peaceful retreat. Features rustic charm with modern comforts.",
+        amenities: ["Garden", "WiFi"],
+        type: "house",
+        rating: 4.3,
+        image: "photo/B2.jpeg",
+        created_at: "2023-05-12",
+        bedrooms: 2,
+        bathrooms: 1,
+        size: "150 m²",
+        host: "James Wilson",
+        reviews: 15,
+        images: ["photo/B2.jpeg", "photo/H2.jpeg", "photo/T1.png", "photo/H1.jpeg"]
+      }
+    ];
+
+    // Fetch property details
+    function fetchPropertyDetails() {
+      const property = sampleProperties.find(p => p.id == propertyId);
+
+      if (!property) {
+        showError('Property not found');
+        return;
+      }
+
+      state.property = property;
+      state.images = property.images || [property.image || 'placeholder.png'];
+      renderPropertyDetails();
+    }
+
+    // Render property details
+    function renderPropertyDetails() {
+      const prop = state.property;
+      const container = document.getElementById('detailsContainer');
+
+      const amenitiesHTML = (prop.amenities || [])
+        .map(a => {
+          const icons = {
+            'WiFi': '📶',
+            'Parking': '🅿️',
+            'Pool': '🏊',
+            'Gym': '💪',
+            'Garden': '🌳',
+            'TV': '📺',
+            'Kitchen': '🍳',
+            'AC': '❄️'
+          };
+          return `
+            <div class="amenity">
+              <span class="amenity-icon">${icons[a] || '✓'}</span>
+              <span>${a}</span>
+            </div>
+          `;
+        })
+        .join('');
+
+      const featuresHTML = `
+        <div class="feature">
+          <div class="feature-title">Type</div>
+          <div class="feature-value">${prop.type || 'Apartment'}</div>
+        </div>
+        <div class="feature">
+          <div class="feature-title">Bedrooms</div>
+          <div class="feature-value">${prop.bedrooms || 2}</div>
+        </div>
+        <div class="feature">
+          <div class="feature-title">Bathrooms</div>
+          <div class="feature-value">${prop.bathrooms || 1}</div>
+        </div>
+        <div class="feature">
+          <div class="feature-title">Size</div>
+          <div class="feature-value">${prop.size || '150 m²'}</div>
+        </div>
+      `;
+
+      const ratingHTML = prop.rating ? `
+        <div class="property-rating">
+          <span>⭐</span>
+          <span>${prop.rating.toFixed(1)}</span>
+          <span>(${prop.reviews || 0} reviews)</span>
+        </div>
+      ` : '';
+
+      container.innerHTML = `
+        <!-- Image Gallery -->
+        <div class="image-gallery">
+          <div class="gallery-main">
+            <img id="mainImage" src="${state.images[0]}" alt="${prop.title}" loading="lazy">
+          </div>
+          <div class="gallery-nav">
+            <button class="gallery-btn" id="prevBtn" aria-label="Previous image">❮</button>
+            <button class="gallery-btn" id="nextBtn" aria-label="Next image">❯</button>
+          </div>
+          ${state.images.length > 1 ? `
+            <div class="gallery-thumbnails" id="thumbnails">
+              ${state.images.map((img, idx) => `
+                <div class="thumbnail ${idx === 0 ? 'active' : ''}" data-index="${idx}">
+                  <img src="${img}" alt="Property image ${idx + 1}">
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+        </div>
+
+        <!-- Details Content -->
+        <div class="details-content">
+          <!-- Header -->
+          <div class="details-header">
+            <div class="property-title">
+              <h1>${prop.title || 'Property'}</h1>
+              <div class="property-location">
+                📍 ${prop.location || 'Location not specified'}
+              </div>
+              ${ratingHTML}
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-end;">
+              <div class="property-price">
+                <div class="price-amount">KSh ${formatPrice(prop.price)}</div>
+                <div class="price-per">per night</div>
+              </div>
+              <button class="favorite-btn" id="favoriteBtn" aria-label="Add to favorites">♡</button>
+            </div>
+          </div>
+
+          <!-- Quick Info -->
+          <div class="quick-info">
+            <div class="info-item">
+              <div class="info-label">ID</div>
+              <div class="info-value">#${prop.id}</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Availability</div>
+              <div class="info-value" style="color: #4caf50;">Available</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Host</div>
+              <div class="info-value">${prop.host || 'Host'}</div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="description-section">
+            <h2 class="section-title">About</h2>
+            <p class="property-description">
+              ${prop.description || 'No description available'}
+            </p>
+          </div>
+
+          <!-- Features -->
+          <div class="features-section">
+            <h2 class="section-title">Features</h2>
+            <div class="features-grid">
+              ${featuresHTML}
+            </div>
+          </div>
+
+          <!-- Amenities -->
+          <div class="description-section">
+            <h2 class="section-title">Amenities</h2>
+            <div class="amenities">
+              ${amenitiesHTML || '<p style="color: #999;">No amenities listed</p>'}
+            </div>
+          </div>
+
+          <!-- Host Information -->
+          <div class="description-section">
+            <h2 class="section-title">Meet Your Host</h2>
+            <div class="host-info">
+              <div class="host-avatar">
+                <span class="host-initial">${(prop.host || 'H').charAt(0).toUpperCase()}</span>
+              </div>
+              <div class="host-details">
+                <h3>${prop.host || 'Host'}</h3>
+                <p class="host-bio">Experienced host with ${prop.reviews || 0} reviews. Committed to providing exceptional stays for guests.</p>
+                <div class="host-stats">
+                  <div class="stat">
+                    <span class="stat-number">${prop.reviews || 0}</span>
+                    <span class="stat-label">Reviews</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-number">${(prop.rating || 0).toFixed(1)}</span>
+                    <span class="stat-label">Rating</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-number">${Math.floor(Math.random() * 5) + 1}</span>
+                    <span class="stat-label">Years hosting</span>
+                  </div>
+                </div>
+                <div class="host-actions">
+                  <a href="contact.html?property=${prop.id}&host=${encodeURIComponent(prop.host || 'Host')}" class="btn btn-outline">Contact Host</a>
+                  <button onclick="messageHost()" class="btn btn-outline">Send Message</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reviews Summary -->
+          <div class="description-section">
+            <h2 class="section-title">Guest Reviews</h2>
+            <div class="reviews-summary">
+              <div class="overall-rating">
+                <div class="rating-score">
+                  <span class="rating-number">${(prop.rating || 0).toFixed(1)}</span>
+                  <div class="rating-stars">
+                    ${'⭐'.repeat(Math.floor(prop.rating || 0))}${(prop.rating % 1 >= 0.5) ? '⭐' : ''}
+                  </div>
+                  <span class="rating-count">(${prop.reviews || 0} reviews)</span>
+                </div>
+              </div>
+              <div class="rating-breakdown">
+                <div class="rating-category">
+                  <span>Cleanliness</span>
+                  <div class="rating-bar">
+                    <div class="rating-fill" style="width: ${Math.min((prop.rating || 0) * 20, 100)}%"></div>
+                  </div>
+                  <span>${(prop.rating || 0).toFixed(1)}</span>
+                </div>
+                <div class="rating-category">
+                  <span>Accuracy</span>
+                  <div class="rating-bar">
+                    <div class="rating-fill" style="width: ${Math.min(((prop.rating || 0) + 0.1) * 20, 100)}%"></div>
+                  </div>
+                  <span>${((prop.rating || 0) + 0.1).toFixed(1)}</span>
+                </div>
+                <div class="rating-category">
+                  <span>Communication</span>
+                  <div class="rating-bar">
+                    <div class="rating-fill" style="width: ${Math.min(((prop.rating || 0) + 0.2) * 20, 100)}%"></div>
+                  </div>
+                  <span>${((prop.rating || 0) + 0.2).toFixed(1)}</span>
+                </div>
+                <div class="rating-category">
+                  <span>Location</span>
+                  <div class="rating-bar">
+                    <div class="rating-fill" style="width: ${Math.min(((prop.rating || 0) - 0.1) * 20, 100)}%"></div>
+                  </div>
+                  <span>${Math.max((prop.rating || 0) - 0.1, 0).toFixed(1)}</span>
+                </div>
+                <div class="rating-category">
+                  <span>Value</span>
+                  <div class="rating-bar">
+                    <div class="rating-fill" style="width: ${Math.min((prop.rating || 0) * 20, 100)}%"></div>
+                  </div>
+                  <span>${(prop.rating || 0).toFixed(1)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Property Policies -->
+          <div class="description-section">
+            <h2 class="section-title">Property Policies</h2>
+            <div class="policies-grid">
+              <div class="policy-item">
+                <div class="policy-icon">🕒</div>
+                <div class="policy-content">
+                  <h4>Check-in & Check-out</h4>
+                  <p>Check-in after 3:00 PM<br>Check-out before 11:00 AM</p>
+                </div>
+              </div>
+              <div class="policy-item">
+                <div class="policy-icon">🚫</div>
+                <div class="policy-content">
+                  <h4>Cancellation Policy</h4>
+                  <p>Free cancellation up to 24 hours before check-in. After that, 50% of the booking amount is non-refundable.</p>
+                </div>
+              </div>
+              <div class="policy-item">
+                <div class="policy-icon">🏠</div>
+                <div class="policy-content">
+                  <h4>House Rules</h4>
+                  <p>No smoking. No parties or events. Pets allowed with permission. Respect quiet hours after 10 PM.</p>
+                </div>
+              </div>
+              <div class="policy-item">
+                <div class="policy-icon">👥</div>
+                <div class="policy-content">
+                  <h4>Guest Requirements</h4>
+                  <p>Government-issued ID required. Age 18+ to book. Maximum ${prop.bedrooms * 2 || 4} guests.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Booking Section -->
+          <div class="booking-section">
+            <div class="booking-content">
+              <div class="booking-info">
+                <h3>Ready to book this property?</h3>
+                <p>Secure your stay with our safe and easy booking process</p>
+              </div>
+              <div class="button-group" style="margin-top: 0; border-top: none; padding-top: 0;">
+                <a href="payment.html?property=${prop.id}&price=${prop.price}" class="btn btn-primary">
+                  Book Now → 
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="button-group">
+            <a href="properties.html" class="btn btn-secondary">← Back to Properties</a>
+            <a href="contact.html?property=${prop.id}" class="btn btn-secondary">Contact Host</a>
+            <button onclick="shareProperty()" class="btn btn-secondary">📤 Share</button>
+          </div>
+        </div>
+      `;
+
+      // Setup event listeners
+      setupGalleryControls();
+      setupFavoriteButton();
+      updateBreadcrumb(prop.title);
+    }
+
+    // Setup gallery controls
+    function setupGalleryControls() {
+      const mainImage = document.getElementById('mainImage');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const thumbnails = document.querySelectorAll('.thumbnail');
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => changeImage(-1));
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => changeImage(1));
+      }
+
+      thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          state.currentImageIndex = parseInt(thumb.dataset.index);
+          updateGallery();
+        });
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') changeImage(-1);
+        if (e.key === 'ArrowRight') changeImage(1);
+      });
+    }
+
+    function changeImage(direction) {
+      state.currentImageIndex += direction;
+      
+      if (state.currentImageIndex < 0) {
+        state.currentImageIndex = state.images.length - 1;
+      } else if (state.currentImageIndex >= state.images.length) {
+        state.currentImageIndex = 0;
+      }
+
+      updateGallery();
+    }
+
+    function updateGallery() {
+      document.getElementById('mainImage').src = state.images[state.currentImageIndex];
+      
+      document.querySelectorAll('.thumbnail').forEach((thumb, idx) => {
+        thumb.classList.toggle('active', idx === state.currentImageIndex);
+      });
+    }
+
+    // Favorite button
+    function setupFavoriteButton() {
+      const btn = document.getElementById('favoriteBtn');
+      const isFavorite = localStorage.getItem(`favorite-${propertyId}`) === 'true';
+      
+      if (isFavorite) {
+        btn.textContent = '♥';
+        btn.style.color = '#f44336';
+      }
+
+      btn.addEventListener('click', () => {
+        const newState = !isFavorite;
+        localStorage.setItem(`favorite-${propertyId}`, newState);
+        btn.textContent = newState ? '♥' : '♡';
+        btn.style.color = newState ? '#f44336' : 'inherit';
+      });
+    }
+
+    // Share property
+    function shareProperty() {
+      const url = window.location.href;
+      const title = state.property.title;
+
+      if (navigator.share) {
+        navigator.share({
+          title: title,
+          text: `Check out this property: ${title}`,
+          url: url
+        }).catch(err => console.log('Share error:', err));
+      } else {
+        // Fallback: copy to clipboard
+        navigator.clipboard.writeText(url).then(() => {
+          alert('Property link copied to clipboard!');
+        });
+      }
+    }
+
+    // Message host
+    function messageHost() {
+      const host = state.property.host || 'Host';
+      const propertyTitle = state.property.title;
+      alert(`Messaging feature coming soon! You can contact ${host} directly about "${propertyTitle}".`);
+    }
+
+    // Utility functions
+    function formatPrice(price) {
+      return parseInt(price).toLocaleString('en-KE');
+    }
+
+    function showError(message) {
+      document.getElementById('detailsContainer').innerHTML = `
+        <div class="error-state">
+          <h2>⚠️ ${message}</h2>
+          <p>This property may no longer be available</p>
+          <div class="button-group" style="margin-top: 20px; border-top: none; padding-top: 0; justify-content: center;">
+            <a href="properties.html" class="btn btn-secondary">← Browse Other Properties</a>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateBreadcrumb(title) {
+      document.getElementById('breadcrumb-title').textContent = title || 'Property Details';
+    }
+  </script>
+</body>
+</html>

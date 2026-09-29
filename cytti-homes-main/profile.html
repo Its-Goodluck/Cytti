@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile - Cytti Homes</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      color: #333;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #667eea;
+      text-decoration: none;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      margin-left: 20px;
+    }
+
+    .profile-content {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+      margin: 40px 0;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    .profile-section {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 15px;
+    }
+
+    .profile-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .info-item {
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 8px;
+    }
+
+    .info-label {
+      font-size: 12px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .info-value {
+      font-size: 16px;
+      color: #222;
+      font-weight: 600;
+    }
+
+    .bookings-list {
+      margin-top: 20px;
+    }
+
+    .booking-item {
+      padding: 20px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .booking-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .booking-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .booking-status {
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .status-confirmed {
+      background: #e8f5e8;
+      color: #4caf50;
+    }
+
+    .status-pending {
+      background: #fff3e0;
+      color: #ff9800;
+    }
+
+    .booking-details {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #f0f0f0;
+      color: #333;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 6px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    footer {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px 0;
+      text-align: center;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="index.html" class="logo">🏠 Cytti Homes</a>
+          <nav>
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="about.html">About</a>
+            <button onclick="logout()" class="btn btn-secondary" style="margin-left: 20px;">Log Out</button>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="profile-content">
+        <h1>My Profile</h1>
+
+        <div class="profile-section">
+          <div class="section-title">Personal Information</div>
+          <div class="profile-info">
+            <div class="info-item">
+              <div class="info-label">Name</div>
+              <div class="info-value" id="userName">John Doe</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Email</div>
+              <div class="info-value" id="userEmail">john@example.com</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Phone</div>
+              <div class="info-value" id="userPhone">+254 712 345 678</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Member Since</div>
+              <div class="info-value" id="memberSince">January 2024</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-section">
+          <div class="section-title">My Bookings</div>
+          <div class="bookings-list" id="bookingsList">
+            <div class="booking-item">
+              <div class="booking-header">
+                <div class="booking-title">Luxury Apartment in Nairobi CBD</div>
+                <div class="booking-status status-confirmed">Confirmed</div>
+              </div>
+              <div class="booking-details">
+                📍 Nairobi, Kenya<br>
+                📅 Check-in: March 15, 2024<br>
+                💰 Total: KSh 45,000
+              </div>
+            </div>
+
+            <div class="booking-item">
+              <div class="booking-header">
+                <div class="booking-title">Cozy House in Karen</div>
+                <div class="booking-status status-pending">Pending</div>
+              </div>
+              <div class="booking-details">
+                📍 Karen, Nairobi<br>
+                📅 Check-in: April 20, 2024<br>
+                💰 Total: KSh 75,000
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-section">
+          <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <a href="properties.html" class="btn btn-primary">Browse Properties</a>
+            <button onclick="editProfile()" class="btn btn-secondary">Edit Profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2026 Cytti Homes. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Check if user is logged in
+    window.addEventListener('DOMContentLoaded', () => {
+      const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+      if (!isLoggedIn) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      // Load user data from localStorage
+      const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+      if (userData.name) document.getElementById('userName').textContent = userData.name;
+      if (userData.email) document.getElementById('userEmail').textContent = userData.email;
+      if (userData.phone) document.getElementById('userPhone').textContent = userData.phone;
+    });
+
+    function logout() {
+      localStorage.removeItem('loggedIn');
+      localStorage.removeItem('userData');
+      window.location.href = 'index.html';
+    }
+
+    function editProfile() {
+      alert('Profile editing feature coming soon!');
+    }
+  </script>
+</body>
+</html>

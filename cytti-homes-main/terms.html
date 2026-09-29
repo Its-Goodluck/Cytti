@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PropertyHub Terms and Conditions" />
+  <title>Terms & Conditions - PropertyHub</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      color: #333;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    /* Header */
+    header {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #667eea;
+      text-decoration: none;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      margin-left: 30px;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #667eea;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+      padding: 60px 0;
+      color: white;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: 44px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      opacity: 0.95;
+    }
+
+    /* Content Container */
+    .content-container {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    .content-container h2 {
+      font-size: 24px;
+      color: #222;
+      margin: 30px 0 16px 0;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #667eea;
+      display: inline-block;
+    }
+
+    .content-container h3 {
+      font-size: 18px;
+      color: #333;
+      margin: 20px 0 12px 0;
+      font-weight: 600;
+    }
+
+    .content-container p {
+      color: #666;
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+
+    .content-container ul,
+    .content-container ol {
+      margin: 16px 0 16px 20px;
+      color: #666;
+    }
+
+    .content-container li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .highlight-box {
+      background: rgba(102, 126, 234, 0.1);
+      border-left: 4px solid #667eea;
+      padding: 16px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .highlight-box strong {
+      color: #667eea;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    table th {
+      background: #f0f0f0;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 2px solid #667eea;
+    }
+
+    table td {
+      padding: 12px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px 0;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+      color: #999;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .content-container {
+        padding: 24px;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 40px 0;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .content-container {
+        padding: 16px;
+      }
+
+      .content-container h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="index.html" class="logo">🏠 PropertyHub</a>
+          <nav>
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Terms & Conditions</h1>
+        <p>Please read our terms carefully before using PropertyHub</p>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <div class="container">
+      <div class="content-container">
+        <p><strong>Last Updated: February 2026</strong></p>
+
+        <h2>1. Introduction</h2>
+        <p>
+          Welcome to PropertyHub ("Company," "we," "us," "our," or "Service"). These Terms and Conditions ("Terms") 
+          govern your use of our website, mobile application, and all related services (collectively, the "Platform"). 
+          By accessing or using PropertyHub, you agree to be bound by these Terms. If you do not agree to any part of 
+          these Terms, you may not use the Platform.
+        </p>
+
+        <h2>2. User Accounts</h2>
+        <h3>2.1 Registration</h3>
+        <p>
+          To access certain features of the Platform, you may be required to create an account. You agree to provide 
+          accurate, current, and complete information during registration and to maintain the confidentiality of your 
+          password and account credentials.
+        </p>
+
+        <h3>2.2 User Responsibilities</h3>
+        <ul>
+          <li>You are responsible for all activities conducted through your account</li>
+          <li>You agree not to share your account credentials with third parties</li>
+          <li>You must notify us immediately of any unauthorized access to your account</li>
+          <li>You agree to comply with all applicable laws and regulations</li>
+        </ul>
+
+        <h2>3. Booking and Reservations</h2>
+        <h3>3.1 Making a Booking</h3>
+        <p>
+          When you make a booking through PropertyHub:
+        </p>
+        <ul>
+          <li>You confirm that you are of legal age (18 years or older)</li>
+          <li>You are entering into a binding contract with the property owner/host</li>
+          <li>The booking is subject to property availability and host acceptance</li>
+          <li>You agree to pay the total amount shown, including service fees and taxes</li>
+        </ul>
+
+        <h3>3.2 Payment Terms</h3>
+        <p>
+          Payment is required at the time of booking unless otherwise specified. PropertyHub acts as a payment 
+          processor and does not retain funds. Payments are processed securely and in compliance with applicable 
+          payment regulations.
+        </p>
+
+        <div class="highlight-box">
+          <strong>Important:</strong> All prices are displayed in Kenyan Shillings (KSh). Additional taxes and service 
+          fees may apply and will be clearly displayed before confirmation.
+        </div>
+
+        <h2>4. Cancellation Policy</h2>
+        <h3>4.1 Booking Cancellation</h3>
+        <p>
+          Cancellation policies vary by property and are displayed at the time of booking. PropertyHub is not responsible 
+          for enforcing cancellation policies. Refund eligibility depends on the specific property's cancellation terms.
+        </p>
+
+        <h3>4.2 Refunds</h3>
+        <p>
+          Refunds, when applicable, are processed to the original payment method within 7-10 business days. PropertyHub 
+          does not assume liability for delays caused by financial institutions.
+        </p>
+
+        <h2>5. User Conduct</h2>
+        <p>
+          You agree not to:
+        </p>
+        <ul>
+          <li>Use the Platform for any illegal purpose or in violation of any applicable laws</li>
+          <li>Harass, abuse, or threaten any member of the PropertyHub community</li>
+          <li>Post false, misleading, or defamatory content</li>
+          <li>Attempt to bypass security measures or gain unauthorized access</li>
+          <li>Engage in fraud, scams, or deceptive practices</li>
+          <li>Interfere with the Platform's functionality or security</li>
+          <li>Scrape, crawl, or extract data from the Platform without permission</li>
+          <li>Post spam, advertisements, or promotional content without authorization</li>
+        </ul>
+
+        <h2>6. Intellectual Property Rights</h2>
+        <p>
+          All content on PropertyHub, including text, graphics, logos, images, and software, is the property of PropertyHub 
+          or its content suppliers and is protected by international copyright and intellectual property laws. You may not 
+          reproduce, modify, distribute, or transmit any content without prior written permission.
+        </p>
+
+        <h2>7. Limitation of Liability</h2>
+        <div class="highlight-box">
+          <strong>DISCLAIMER:</strong> PropertyHub is provided "as-is" without warranties of any kind. We do not warrant 
+          that the Platform will be uninterrupted, error-free, or secure. To the fullest extent permitted by law, PropertyHub 
+          shall not be liable for indirect, incidental, special, or consequential damages.
+        </div>
+
+        <h2>8. Property Descriptions</h2>
+        <p>
+          PropertyHub relies on information provided by hosts. While we attempt to verify this information, we do not guarantee 
+          the accuracy of property descriptions, images, or amenities. We recommend thoroughly reviewing property details and 
+          contacting hosts directly before booking.
+        </p>
+
+        <h2>9. Guest Conduct at Properties</h2>
+        <p>
+          As a guest, you agree to:
+        </p>
+        <ul>
+          <li>Treat the property and hosts' belongings with respect</li>
+          <li>Follow house rules and local regulations</li>
+          <li>Respect the quiet hours established by the host</li>
+          <li>Not exceed the maximum occupancy limit</li>
+          <li>Return the property in the condition it was provided</li>
+          <li>Not engage in illegal activities at the property</li>
+        </ul>
+
+        <h2>10. Dispute Resolution</h2>
+        <h3>10.1 Communication</h3>
+        <p>
+          In case of disputes between guests and hosts, both parties agree to attempt resolution through direct communication 
+          within 48 hours of the issue.
+        </p>
+
+        <h3>10.2 PropertyHub Mediation</h3>
+        <p>
+          If direct communication fails, either party may request mediation through PropertyHub's dispute resolution team. 
+          PropertyHub will review the case and attempt to facilitate a fair resolution.
+        </p>
+
+        <h3>10.3 Governing Law</h3>
+        <p>
+          These Terms and Conditions are governed by the laws of Kenya. Any legal proceedings arising from these Terms shall 
+          be conducted in the courts of Kenya.
+        </p>
+
+        <h2>11. Privacy Policy</h2>
+        <p>
+          Your use of PropertyHub is also governed by our Privacy Policy, which outlines how we collect, use, and protect your 
+          personal information. Please review our Privacy Policy carefully.
+        </p>
+
+        <h2>12. Modifications to Terms</h2>
+        <p>
+          PropertyHub reserves the right to modify these Terms at any time. Changes will be effective immediately upon posting 
+          to the Platform. Your continued use of the Platform following the posting of modified Terms constitutes your acceptance 
+          of those changes.
+        </p>
+
+        <h2>13. Termination</h2>
+        <p>
+          PropertyHub reserves the right to terminate or suspend your account and access to the Platform at any time for violations 
+          of these Terms or for any other reason at our sole discretion.
+        </p>
+
+        <h2>14. Contact Information</h2>
+        <p>
+          If you have questions about these Terms and Conditions, please contact us at:
+        </p>
+        <div class="highlight-box">
+          <strong>PropertyHub Support Team</strong><br/>
+          Email: legal@propertyhub.local<br/>
+          Phone: +254 (0) 123 456 789<br/>
+          Office: Nairobi, Kenya
+        </div>
+
+        <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
+          <strong>By using PropertyHub, you acknowledge that you have read, understood, and agree to be bound by these 
+          Terms and Conditions.</strong>
+        </p>
+
+        <a href="index.html" class="btn">← Back to Home</a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2026 PropertyHub. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

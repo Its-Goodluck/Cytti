@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account - Sign Up</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated background pattern */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      z-index: 0;
+    }
+
+    .signup-container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 420px;
+      padding: 20px;
+    }
+
+    .signup-card {
+      padding: 40px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.3);
+      color: #222;
+      animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .signup-card h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .signup-card p {
+      font-size: 14px;
+      margin-bottom: 28px;
+      color: #666;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      background: #f9f9f9;
+      color: #222;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #667eea;
+      background: white;
+      box-shadow: 0px 0px 0px 4px rgba(102, 126, 234, 0.1);
+    }
+
+    .form-group input::placeholder {
+      color: #999;
+    }
+
+    .password-strength {
+      margin-top: 8px;
+      height: 4px;
+      background: #e0e0e0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .password-strength-bar {
+      height: 100%;
+      width: 0;
+      transition: width 0.3s ease, background-color 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .strength-weak {
+      width: 33%;
+      background-color: #f44336;
+    }
+
+    .strength-fair {
+      width: 66%;
+      background-color: #ff9800;
+    }
+
+    .strength-good {
+      width: 100%;
+      background-color: #4caf50;
+    }
+
+    .strength-text {
+      font-size: 12px;
+      margin-top: 4px;
+      color: #666;
+    }
+
+    .error-message {
+      color: #f44336;
+      font-size: 12px;
+      margin-top: 6px;
+      display: none;
+      animation: shake 0.3s ease;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    .signup-btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .signup-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0px 10px 20px rgba(102, 126, 234, 0.3);
+    }
+
+    .signup-btn:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .signup-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .login-text {
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: center;
+      color: #666;
+    }
+
+    .login-text a {
+      color: #667eea;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .login-text a:hover {
+      color: #764ba2;
+      text-decoration: underline;
+    }
+
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeInModal 0.3s ease;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    @keyframes fadeInModal {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .modal-content {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 380px;
+      width: 90%;
+      box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideUpModal 0.3s ease;
+    }
+
+    @keyframes slideUpModal {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-content.success h3 {
+      color: #4caf50;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .modal-content.error h3 {
+      color: #f44336;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .modal-content p {
+      color: #666;
+      margin-bottom: 25px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .modal-btn {
+      padding: 10px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .modal-btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .modal-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 10px 20px rgba(102, 126, 234, 0.3);
+    }
+
+    .modal-btn-secondary {
+      background: #e0e0e0;
+      color: #333;
+    }
+
+    .modal-btn-secondary:hover {
+      background: #d0d0d0;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #667eea;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .terms-text {
+      font-size: 12px;
+      color: #999;
+      margin-top: 15px;
+      line-height: 1.5;
+    }
+
+    .terms-text a {
+      color: #667eea;
+      text-decoration: none;
+    }
+
+    .terms-text a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .signup-card {
+        padding: 30px 20px;
+      }
+
+      .signup-card h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signup-container">
+    <div class="signup-card">
+      <h1>Create Account</h1>
+      <p>Join us today and get started</p>
+
+      <form action="signup_process.php" method="POST" novalidate id="signup-form">
+        <!-- Username Field -->
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Choose a username"
+            required
+            minlength="3"
+            maxlength="20"
+            aria-describedby="username-error"
+          />
+          <div class="error-message" id="username-error" role="alert"></div>
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="your@email.com"
+            required
+            aria-describedby="email-error"
+          />
+          <div class="error-message" id="email-error" role="alert"></div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="At least 8 characters"
+            required
+            minlength="8"
+            aria-describedby="password-error password-strength-text"
+          />
+          <div class="password-strength">
+            <div class="password-strength-bar" id="strength-bar"></div>
+          </div>
+          <div class="strength-text" id="password-strength-text">Password strength: -</div>
+          <div class="error-message" id="password-error" role="alert"></div>
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password</label>
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm_password"
+            placeholder="Re-enter your password"
+            required
+            aria-describedby="confirm-error"
+          />
+          <div class="error-message" id="confirm-error" role="alert"></div>
+        </div>
+
+        <!-- Terms Checkbox -->
+        <div class="form-group">
+          <label style="display: flex; align-items: center; font-weight: 400; cursor: pointer;">
+            <input
+              type="checkbox"
+              id="terms"
+              name="terms"
+              required
+              style="width: 18px; height: 18px; margin-right: 8px; cursor: pointer;"
+              aria-describedby="terms-error"
+            />
+            I agree to the <a href="#" style="color: #667eea; text-decoration: none;">Terms of Service</a> and <a href="#" style="color: #667eea; text-decoration: none;">Privacy Policy</a>
+          </label>
+          <div class="error-message" id="terms-error" role="alert"></div>
+        </div>
+
+        <button class="signup-btn" type="submit" id="submit-btn">
+          Create Account
+        </button>
+
+        <p class="login-text">
+          Already have an account? <a href="login.php">Log in here</a>
+        </p>
+
+        <p class="terms-text">
+          By signing up, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="modal" role="dialog" aria-labelledby="success-title" aria-modal="true">
+    <div class="modal-content success">
+      <h3 id="success-title">✓ Registration Successful</h3>
+      <p>Your account has been created successfully! Redirecting to login page in <span id="countdown">5</span> seconds...</p>
+      <div class="modal-buttons">
+        <button class="modal-btn modal-btn-primary" id="successBtn">Continue to Login</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div id="errorModal" class="modal" role="dialog" aria-labelledby="error-title" aria-modal="true">
+    <div class="modal-content error">
+      <h3 id="error-title">✗ Error</h3>
+      <p id="error-text"></p>
+      <div class="modal-buttons">
+        <button class="modal-btn modal-btn-primary" id="errorBtn">Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Password strength checker
+    const passwordInput = document.getElementById('password');
+    const strengthBar = document.getElementById('strength-bar');
+    const strengthText = document.getElementById('password-strength-text');
+
+    passwordInput.addEventListener('input', function() {
+      const strength = checkPasswordStrength(this.value);
+      updateStrengthBar(strength);
+    });
+
+    function checkPasswordStrength(password) {
+      let strength = 0;
+
+      if (password.length >= 8) strength++;
+      if (password.length >= 12) strength++;
+      if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+      if (/[0-9]/.test(password)) strength++;
+      if (/[^a-zA-Z0-9]/.test(password)) strength++;
+
+      return strength;
+    }
+
+    function updateStrengthBar(strength) {
+      const bar = document.querySelector('.password-strength-bar');
+      const text = document.getElementById('password-strength-text');
+
+      bar.classList.remove('strength-weak', 'strength-fair', 'strength-good');
+
+      if (strength <= 2) {
+        bar.classList.add('strength-weak');
+        text.textContent = 'Password strength: Weak';
+        text.style.color = '#f44336';
+      } else if (strength <= 3) {
+        bar.classList.add('strength-fair');
+        text.textContent = 'Password strength: Fair';
+        text.style.color = '#ff9800';
+      } else {
+        bar.classList.add('strength-good');
+        text.textContent = 'Password strength: Strong';
+        text.style.color = '#4caf50';
+      }
+    }
+  </script>
+
+</body>
+</html>

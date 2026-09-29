@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Confirmation - Property Rental</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: url("image.png") no-repeat center center/cover;
+      position: relative;
+      color: white;
+    }
+
+    /* Dark overlay for better contrast */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .confirmation-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 18px;
+      padding: 40px;
+      box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.35);
+      animation: fadeIn 0.9s ease-in-out;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      background: #4CAF50;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      color: white;
+    }
+
+    .confirmation-card h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #ffeb3b;
+    }
+
+    .confirmation-card p {
+      font-size: 16px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .details {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      text-align: left;
+    }
+
+    .details h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #ffeb3b;
+    }
+
+    .details p {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .details .amount {
+      font-size: 18px;
+      font-weight: 700;
+      color: #4CAF50;
+    }
+
+    .actions {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: #222;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: #f0f0f0;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="confirmation-card">
+      <div class="success-icon">✓</div>
+      <h1>Payment Successful!</h1>
+      <p>Your property rental payment has been processed successfully.</p>
+
+      <div class="details">
+        <h3>Rental Details</h3>
+        <p><strong>Property:</strong> <span id="property-name">Property #1</span></p>
+        <p><strong>Transaction ID:</strong> <span id="transaction-id">TXN-2024-001</span></p>
+        <p><strong>Payment Date:</strong> <span id="payment-date">January 15, 2024</span></p>
+        <p><strong>Amount Paid:</strong> <span class="amount" id="amount-paid">$500,000</span></p>
+      </div>
+
+      <div class="actions">
+        <a href="index.html" class="btn btn-primary">Back to Properties</a>
+        <button onclick="window.print()" class="btn btn-secondary">Print Receipt</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Get URL parameters
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      const results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    // Set confirmation details from URL parameters
+    const property = getUrlParameter('property');
+    const price = getUrlParameter('price');
+
+    if (property) {
+      // Map property numbers to names
+      const propertyNames = {
+        '1': 'Modern Apartment',
+        '2': 'Cozy House',
+        '3': 'Luxury Villa',
+        '4': 'Urban Loft',
+        '5': 'Suburban Home',
+        '6': 'Penthouse Suite'
+      };
+      document.getElementById('property-name').textContent = propertyNames[property] || `Property #${property}`;
+    }
+
+    if (price) {
+      const formattedPrice = '$' + (parseInt(price) / 1000).toFixed(0) + ',000';
+      document.getElementById('amount-paid').textContent = formattedPrice;
+    }
+
+    // Set current date
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+    document.getElementById('payment-date').textContent = formattedDate;
+
+    // Generate transaction ID
+    const transactionId = 'TXN-' + currentDate.getFullYear() + '-' + Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+    document.getElementById('transaction-id').textContent = transactionId;
+  </script>
+</body>
+</html>
